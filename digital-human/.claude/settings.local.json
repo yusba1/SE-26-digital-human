@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(wc:*)",
+      "Bash(git -C /Users/Parry/Desktop/youth/00-code/ai/digital-human log --oneline -15)",
+      "Bash(python:*)",
+      "Bash(npx tsc:*)",
+      "Bash(python3:*)"
+    ]
+  }
+}

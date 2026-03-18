@@ -1,0 +1,25 @@
+# 修复 dihuman_core.py 以匹配训练时的模型维度
+# 
+# 问题: 当前代码使用 [1, 256, 16, 32] (16 帧特征)，但模型期望 [1, 128, 16, 32] (8 帧特征)
+# 解决: 修改代码使用 8 帧特征，与训练时保持一致
+
+--- dihuman_core.py.orig
++++ dihuman_core.py
+@@ -232,7 +232,7 @@
+             elif self.index<=0:
+                 self.step = 1
+             
+-            if self.using_feat.shape[0]>=16: # 音频特征攒够8帧 开始输出图片 下面的逻辑和inference里的一样
++            if self.using_feat.shape[0]>=8: # 音频特征攒够8帧 开始输出图片 下面的逻辑和inference里的一样
+                 
+                 xmin,ymin,xmax,ymax = bbox
+                 crop_img = img[ymin:ymax, xmin:xmax]
+@@ -245,7 +245,7 @@
+                 img_masked = np.expand_dims(img_masked, 0)
+                 img_real_ex = np.expand_dims(img_real_ex, 0)
+                 img_onnx_in = np.concatenate((img_real_ex, img_masked), axis=1)
+-                audio_feat = self.using_feat.reshape(1,256,16,32)
++                audio_feat = self.using_feat[:8].reshape(1,128,16,32)  # 只使用前8帧，与训练时一致
+ 
+                 ort_unet_inputs = {self.ort_unet_session.get_inputs()[0].name: img_onnx_in, self.ort_unet_session.get_inputs()[1].name: audio_feat}
+                 ort_outs = self.ort_unet_session.run(None, ort_unet_inputs)
