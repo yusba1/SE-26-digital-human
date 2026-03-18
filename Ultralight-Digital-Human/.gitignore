@@ -1,0 +1,49 @@
+.ipynb_checkpoints
+dataset
+*.wav
+*.npy
+__pycache__
+*.mp4
+checkpoint
+syncnet_checkpoint
+*.jpg
+data_utils/encoder.onnx
+__MACOSX
+
+# ==== local/editor/cache ====
+.vscode/
+__pycache__/
+.DS_Store
+*.pyc
+
+# ==== large checkpoints/models ====
+checkpoints/
+checkpoint/
+syncnet_checkpoint/
+*.pt
+*.pth
+*.pth.tar
+*.ckpt
+*.bin
+*.onnx
+*.tar# ==== large media/data ====
+data_utils/Veo1/
+data_utils/Veo2/
+data_utils/Veo3/
+data_utils/EmilyWinston/
+data_utils/JackieChen/
+data_utils/audio_file/
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.wav
+*.mp3
+*.flac
+
+# ==== numpy/data dumps ====
+*.npy
